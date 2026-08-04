@@ -708,7 +708,7 @@
             document.getElementById('checkoutModal').style.display = 'none';
         }
 
-        function finalizeOrder() {
+        async function finalizeOrder() {
             if(cart.length === 0) return;
             
             const name = document.getElementById('clientName').value;
@@ -728,15 +728,29 @@
                 return;
             }
 
-            // Simulação de envio
-            let msg = `Pedido Confirmado!\nCliente: ${name}\nWhatsApp: ${whatsapp}\nEndereço: ${street}, ${num}\nPagamento: ${payment}`;
-            if(obs) msg += `\nObs: ${obs}`;
-            
-            alert(msg);
-            // Aqui você integraria com WhatsApp ou Backend
-            cart = [];
-            updateCartUI();
-            closeModal();
+            const total = cart.reduce((soma, item) => soma + item.price, 0);
+
+try {
+  const response = await fetch("/api/charge", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      amount: total,
+      description: `Pedido de ${name}`
+    })
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+  alert("Cobrança PIX criada com sucesso!");
+
+} catch (e) {
+  alert("Erro ao gerar o PIX.");
+  console.error(e);
+}
         }
 
         window.onclick = function(event) {
