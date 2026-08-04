@@ -3,244 +3,357 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Point do X - O Melhor Lanche</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+<title>Point do X - Cardápio</title>
 <style>
 :root {
---primary-red: #DA291C; /* Vermelho Fast-Food */
---dark-red: #a81c12;
---accent-yellow: #FFC72C; /* Amarelo Mostarda */
---bg-dark: #121212;
---bg-card: #1E1E1E;
---text-light: #F5F5F5;
---text-gray: #B0B0B0;
+--primary: #DA291C;
+--dark: #333;
+--light: #f4f4f4;
+--white: #ffffff;
+--gray: #888;
+--discount: #27ae60;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-body { background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
+body { background-color: var(--light); color: var(--dark); padding-bottom: 80px; }
 
-/* Scrollbar Vermelha */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-dark); }
-::-webkit-scrollbar-thumb { background: var(--primary-red); border-radius: 4px; }
-
-/* Header Fixo */
 header {
-position: fixed; top: 0; width: 100%; z-index: 1000;
-background: rgba(18, 18, 18, 0.95);
-backdrop-filter: blur(10px);
-border-bottom: 2px solid var(--primary-red);
-padding: 1rem 5%;
+background: var(--primary);
+color: white;
+padding: 1rem;
+text-align: center;
+position: sticky;
+top: 0;
+z-index: 100;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+header h1 { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
-.nav-container {
-max-width: 1200px; margin: 0 auto;
-display: flex; justify-content: space-between; align-items: center;
+.tabs {
+display: flex;
+background: white;
+overflow-x: auto;
+white-space: nowrap;
+box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
-
-.logo {
-font-size: 1.8rem; font-weight: 900;
-color: var(--text-light); text-transform: uppercase;
-display: flex; align-items: center; gap: 10px;
-}
-.logo span { color: var(--primary-red); }
-.logo-icon {
-background: var(--primary-red); color: white;
-width: 40px; height: 40px; border-radius: 50%;
-display: flex; align-items: center; justify-content: center;
-font-weight: bold; font-size: 1.2rem;
-}
-
-nav ul { display: flex; list-style: none; gap: 2rem; }
-nav a {
-text-decoration: none; color: var(--text-light); font-weight: 600;
+.tab-btn {
+flex: 1;
+padding: 15px;
+border: none;
+background: none;
+font-weight: 600;
+color: var(--gray);
+cursor: pointer;
+border-bottom: 3px solid transparent;
 transition: 0.3s;
 }
-nav a:hover { color: var(--primary-red); }
-
-.btn-pedir {
-background: var(--primary-red); color: white;
-padding: 0.8rem 1.5rem; border-radius: 50px;
-text-decoration: none; font-weight: 700;
-transition: transform 0.2s;
-box-shadow: 0 4px 15px rgba(218, 41, 28, 0.4);
-}
-.btn-pedir:hover { transform: scale(1.05); background: var(--dark-red); }
-
-/* Hero Section */
-.hero {
-height: 90vh; display: flex; align-items: center; justify-content: center;
-text-align: center; padding: 0 5%;
-background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80');
-background-size: cover; background-position: center;
+.tab-btn.active {
+color: var(--primary);
+border-bottom: 3px solid var(--primary);
 }
 
-.hero-content h1 {
-font-size: 4rem; line-height: 1.1; margin-bottom: 1rem;
-text-transform: uppercase; font-weight: 900;
+.container {
+max-width: 600px;
+margin: 0 auto;
+padding: 15px;
 }
-.hero-content h1 span { color: var(--primary-red); }
-.hero-content p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 2rem; }
 
-/* Cardápio */
-.menu-section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
 .section-title {
-text-align: center; margin-bottom: 3rem;
-}
-.section-title h2 {
-font-size: 2.5rem; text-transform: uppercase; font-weight: 900;
-border-bottom: 4px solid var(--primary-red); display: inline-block;
-padding-bottom: 10px;
-}
-
-.filters {
-display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;
-}
-.filter-btn {
-background: var(--bg-card); border: 1px solid #333; color: white;
-padding: 0.5rem 1.5rem; border-radius: 20px; cursor: pointer;
-transition: 0.3s;
-}
-.filter-btn.active,.filter-btn:hover {
-background: var(--primary-red); border-color: var(--primary-red);
+color: var(--primary);
+font-size: 1.2rem;
+margin: 20px 0 10px;
+font-weight: 700;
+text-transform: uppercase;
+border-left: 4px solid var(--primary);
+padding-left: 10px;
 }
 
 .menu-grid {
-display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
 }
 
 .card {
-background: var(--bg-card); border-radius: 15px; overflow: hidden;
-transition: transform 0.3s; border: 1px solid #333;
-position: relative;
+background: white;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+display: flex;
+flex-direction: column;
 }
-.card:hover { transform: translateY(-5px); border-color: var(--primary-red); }
 
 .card-img {
-height: 200px; background: #333;
-display: flex; align-items: center; justify-content: center;
-font-size: 3rem; color: #555;
+height: 120px;
+background: #eee;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
 }
-/* Simulação de imagem com gradiente vermelho */
-.card-img.burger { background: linear-gradient(45deg, #2b1111, #4a1c1c); }
-.card-img.drink { background: linear-gradient(45deg, #112b11, #1c4a1c); }
 
-.card-body { padding: 1.5rem; }
-.card-tag {
-position: absolute; top: 10px; right: 10px;
-background: var(--accent-yellow); color: black;
-padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700;
+.card-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
 }
-.card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-.card p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 1rem; }
-.price-row {
-display: flex; justify-content: space-between; align-items: center;
+
+.card-body {
+padding: 10px;
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
-.price { font-size: 1.5rem; font-weight: 700; color: var(--primary-red); }
+
+.card h3 {
+font-size: 0.95rem;
+margin-bottom: 5px;
+line-height: 1.2;
+}
+
+.card p {
+font-size: 0.75rem;
+color: var(--gray);
+margin-bottom: 8px;
+line-height: 1.3;
+}
+
+.price-container {
+display: flex;
+flex-direction: column;
+margin-bottom: 5px;
+}
+
+.old-price {
+font-size: 0.8rem;
+color: var(--gray);
+text-decoration: line-through;
+}
+
+.new-price {
+color: var(--discount);
+font-weight: 800;
+font-size: 1.1rem;
+}
+
+.discount-tag {
+font-size: 0.7rem;
+background: var(--discount);
+color: white;
+padding: 2px 6px;
+border-radius: 4px;
+display: inline-block;
+margin-bottom: 4px;
+width: fit-content;
+}
+
 .btn-add {
-background: white; color: black; border: none;
-padding: 8px 15px; border-radius: 5px; font-weight: 700; cursor: pointer;
+background: var(--primary);
+color: white;
+border: none;
+width: 100%;
+padding: 8px;
+border-radius: 6px;
+margin-top: 8px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.2s;
 }
-.btn-add:hover { background: var(--accent-yellow); }
+.btn-add:active { transform: scale(0.95); }
 
-/* Footer */
-footer {
-background: #000; padding: 3rem 5%; text-align: center; margin-top: 4rem;
-border-top: 2px solid var(--primary-red);
+/* Carrinho Flutuante */
+.cart-float {
+position: fixed;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+background: var(--dark);
+color: white;
+padding: 12px 25px;
+border-radius: 50px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+display: none;
+align-items: center;
+gap: 10px;
+z-index: 200;
+cursor: pointer;
 }
-.social-links { margin: 1rem 0; }
-.social-links a { color: white; margin: 0 10px; font-size: 1.5rem; text-decoration: none; }
+.cart-count {
+background: var(--primary);
+padding: 2px 8px;
+border-radius: 10px;
+font-size: 0.8rem;
+font-weight: bold;
+}
 
-/* Mobile */
-@media (max-width: 768px) {
-.hero-content h1 { font-size: 2.5rem; }
-nav ul { display: none; } /* Menu simplificado para mobile /
-.logo { font-size: 1.4rem; }
+/* Modal Checkout */
+.modal {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.6); z-index: 300;
+display: none; align-items: center; justify-content: center;
+backdrop-filter: blur(2px);
+}
+.modal-content {
+background: white; width: 95%; max-width: 450px;
+border-radius: 15px; padding: 20px;
+max-height: 90vh;
+overflow-y: auto;
+}
+.modal-header { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+.close-modal { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+
+/* Lista do Carrinho com Remoção */
+.cart-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 8px 0;
+border-bottom: 1px dashed #eee;
+}
+.remove-btn {
+background: #ffebee;
+color: #c62828;
+border: none;
+width: 24px;
+height: 24px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+font-size: 1.2rem;
+line-height: 1;
+margin-left: 10px;
+}
+
+/* Formulário /
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 0.85rem; color: #555; margin-bottom: 4px; font-weight: 600; }
+.form-input {
+width: 100%;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 0.9rem;
+}
+.form-row { display: flex; gap: 10px; }
+
+.checkout-btn {
+background: var(--primary);
+color: white; width: 100%; padding: 14px;
+border: none; border-radius: 8px; font-weight: bold; margin-top: 15px;
+cursor: pointer; font-size: 1rem;
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <header>
-<div class="nav-container">
-<div class="logo">
-<div class="logo-icon">X</div>
-Point <span>do X</span>
-</div>
-<nav>
-<ul>
-<li><a href="#home">Início</a></li>
-<li><a href="#menu">Cardápio</a></li>
-<li><a href="#contact">Contato</a></li>
-</ul>
-</nav>
-<a href="https://wa.me/5511999999999" class="btn-pedir">Pedir Agora</a>
-</div>
+<h1>Point do X</h1>
 </header>
 
-<!-- Hero -->
-<section id="home" class="hero">
-<div class="hero-content">
-<h1>Fome de <br><span>Verdade?</span></h1>
-<p>O melhor hambúrguer artesanal da cidade. Quente, suculento e rápido.</p>
-<a href="#menu" class="btn-pedir" style="font-size: 1.2rem; padding: 1rem 2rem;">Ver Cardápio</a>
-</div>
-</section>
-
-<!-- Cardápio -->
-<section id="menu" class="menu-section">
-<div class="section-title">
-<h2>Nossos Favoritos</h2>
+<div class="tabs">
+<button class="tab-btn active" onclick="filterMenu('lanches')">Lanches</button>
+<button class="tab-btn" onclick="filterMenu('porcoes')">Porções</button>
+<button class="tab-btn" onclick="filterMenu('bebidas')">Bebidas</button>
 </div>
 
-<div class="filters">
-<button class="filter-btn active">Todos</button>
-<button class="filter-btn">Burgers</button>
-<button class="filter-btn">Combos</button>
-<button class="filter-btn">Bebidas</button>
-</div>
+<div class="container">
 
+<!-- Lanches -->
+<div id="lanches" class="menu-category">
+
+<h2 class="section-title">Lanches</h2>
 <div class="menu-grid">
-<!-- Item 1 -->
+
+<!-- X Alcatra -->
 <div class="card">
-<div class="card-img burger">🍔</div>
-<div class="card-tag">MAIS VENDIDO</div>
-<div class="card-body">
-<h3>X-Tudo Point</h3>
-<p>Pão brioche, 2 carnes 150g, bacon, cheddar, ovo e molho especial.</p>
-<div class="price-row">
-<span class="price">R$ 28,90</span>
-<button class="btn-add">+</button>
+<div class="card-img">
+<img src="file_00000000f900820eb995d2b2ff5bdf92.png" alt="X-Alcatra">
 </div>
+<div class="card-body">
+<h3>X-Alcatra</h3>
+<p>Pão hambúrguer 130g de carne, 150g de alcatra em cubos, maionese, alface, tomate, milho batata palha queijo e presunto</p>
+<div class="price-container">
+<span class="discount-tag">-2% OFF</span>
+<span class="old-price">R$ 27,00</span>
+<span class="new-price">R$ 26,46</span>
+</div>
+<button class="btn-add" onclick="addToCart('X-Alcatra', 26.46)">Add</button>
 </div>
 </div>
 
-<!-- Item 2 -->
+<!-- X Bacon -->
 <div class="card">
-<div class="card-img burger">🥓</div>
-<div class="card-body">
-<h3>Bacon Supreme</h3>
-<p>Muito bacon crocante, carne smash, cebola caramelizada e barbecue.</p>
-<div class="price-row">
-<span class="price">R$ 24,50</span>
-<button class="btn-add">+</button>
+<div class="card-img">
+<img src="file_00000000e2a0820ea3350b472b222487.png" alt="X-Bacon">
 </div>
+<div class="card-body">
+<h3>X-Bacon</h3>
+<p>Pão hambúrguer 130g de carne, bacon em cubos, maionese, alface, tomate, milho, batata palha, queijo e presunto</p>
+<div class="price-container">
+<span class="discount-tag">-2% OFF</span>
+<span class="old-price">R$ 24,00</span>
+<span class="new-price">R$ 23,52</span>
+</div>
+<button class="btn-add" onclick="addToCart('X-Bacon', 23.52)">Add</button>
 </div>
 </div>
 
-<!-- Item 3 -->
+<!-- X Burguer -->
 <div class="card">
-<div class="card-img drink">🥤</div>
+<div class="card-img">
+<img src="file_0000000082cc820ea69d30c58af5c4f2.png" alt="X-Burguer">
+</div>
 <div class="card-body">
-<h3>Coca-Cola 350ml</h3>
-<p>Lata bem gelada para acompanhar seu lanche.</p>
-<div class="price-row">
-<span class="price">R$ 6,00</span>
-<button class="btn-add">+</button>
+<h3>X-Burguer</h3>
+<p>Pão hambúrguer 130g de carne, maionese, batata palha, queijo e presunto</p>
+<div class="price-container">
+<span class="discount-tag">-2% OFF</span>
+<span class="old-price">R$ 15,00</span>
+<span class="new-price">R$ 14,70</span>
+</div>
+<button class="btn-add" onclick="addToCart('X-Burguer', 14.70)">Add</button>
 </div>
 </div>
- 
+
+<!-- X Calabresa -->
+<div class="card">
+<div class="card-img">
+<img src="file_00000000bc3c820e9f8aecad92b14a68.png" alt="X-Calabresa">
+</div>
+<div class="card-body">
+<h3>X-Calabresa</h3>
+<p>Pão hambúrguer 130g de carne, calabresa, maionese, alface, tomate, milho batata palha, queijo e presunto</p>
+<div class="price-container">
+<span class="discount-tag">-2% OFF</span>
+<span class="old-price">R$ 22,00</span>
+<span class="new-price">R$ 21,56</span>
+</div>
+<button class="btn-add" onclick="addToCart('X-Calabresa', 21.56)">Add</button>
+</div>
+</div>
+
+<!-- X Egg -->
+<div class="card">
+<div class="card-img">
+<img src="file_00000000a2dc820eaba291902247ce9d.png" alt="X-Egg">
+</div>
+<div class="card-body">
+<h3>X-Egg</h3>
+<p>Pão hambúrguer 130g de carne, ovo, maionese alface, tomate, milho, batata palha, queijo e presunto</p>
+<div class="price-container">
+<span class="discount-tag">-2% OFF</span>
+<span class="old-price">R$ 23,40</span>
+<span class="new-price">R$ 22,93</span>
+</div>
+<button class="btn-add" onclick="addToCart('X-Egg', 22.93)">Add</button>
+</div>
+</div>
+
+<!-- X Frango -->
+<div class="card">
+<div class="card-img">
+<img src="file_00000000a2dc820eaba291902247ce9d.png" alt="X
