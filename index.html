@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Point X Lanchonete</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+--neon-green: #00ff9d;
+--neon-pink: #ff00cc;
+--neon-blue: #00f0ff;
+--bg-dark: #0a0a23;
+--card-dark: #111127;
+--text-base: #e2e8f0;
+--text-muted: #94a3b8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: 'Inter', sans-serif;
+background: var(--bg-dark);
+color: var(--text-base);
+overflow-x: hidden;
+scroll-behavior: smooth;
+}
+
+/* Scrollbar Neon */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--card-dark); }
+::-webkit-scrollbar-thumb { background: var(--neon-green); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--neon-blue); }
+
+/* Header */
+header {
+position: fixed; top: 0; width: 100%;
+background: rgba(10, 10, 35, 0.95);
+backdrop-filter: blur(10px);
+z-index: 1000;
+padding: 1rem 2rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-container {
+max-width: 1200px; margin: 0 auto;
+display: flex; justify-content: space-between; align-items: center;
+}
+
+.logo { display: flex; align-items: center; gap: 0.75rem; }
+.logo-icon {
+width: 3rem; height: 3rem;
+background: var(--neon-green);
+border-radius: 0.5rem;
+display: flex; align-items: center; justify-content: center;
+font-weight: 800; font-size: 1.5rem; color: #0a0a23;
+box-shadow: 0 0 15px var(--neon-green);
+}
+.logo-text {
+font-weight: 800; font-size: 1.5rem;
+background: linear-gradient(90deg, var(--neon-green), var(--neon-pink));
+-webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+nav a {
+color: var(--text-base); text-decoration: none;
+font-weight: 500; margin: 0 1rem;
+position: relative; padding: 0.5rem 0; transition: color 0.3s;
+}
+nav a:hover { color: var(--neon-green); }
+nav a::after {
+content: ''; position: absolute; bottom: 0; left: 0;
+width: 0; height: 2px; background: var(--neon-green); transition: width 0.3s;
+}
+nav a:hover::after { width: 100%; }
+
+.whatsapp-btn {
+background: var(--neon-green); color: #0a0a23;
+padding: 0.75rem 1.5rem; border-radius: 0.5rem;
+font-weight: 700; text-decoration: none;
+display: flex; align-items: center; gap: 0.5rem;
+transition: all 0.3s; box-shadow: 0 0 15px var(--neon-green);
+}
+.whatsapp-btn:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--neon-green); }
+
+/* Hero Section */
+.hero {
+min-height: 100vh; display: flex; align-items: center; justify-content: center;
+text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
+}
+.hero::before {
+content: ''; position: absolute; top: 50%; left: 50%;
+transform: translate(-50%, -50%); width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(0, 255, 157, 0.1) 0%, transparent 70%);
+z-index: -1;
+}
+.hero-content { max-width: 800px; margin: 0 auto; }
+.hero-badge {
+display: inline-block; padding: 0.5rem 1rem;
+border-radius: 999px; background: rgba(255, 255, 255, 0.1);
+border: 1px solid rgba(255, 255, 255, 0.2);
+font-size: 0.875rem; font-weight: 500; margin-bottom: 2rem;
+animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+.hero h1 {
+font-size: clamp(2.5rem, 6vw, 4.5rem);
+font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem;
+}
+.hero h1.highlight {
+background: linear-gradient(90deg, var(--neon-green), var(--neon-pink));
+-webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero p {
+font-size: 1.25rem; color: var(--text-muted);
+margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+background: var(--neon-green); color: #0a0a23;
+padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 700;
+text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+transition: all 0.3s; box-shadow: 0 0 15px var(--neon-green);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 25px var(--neon-green); }
+.btn-secondary {
+background: transparent; color: var(--text-base);
+padding: 1rem 2rem; border-radius: 0.5rem; font-weight: 700;
+text-decoration: none; border: 2px solid var(--neon-green); transition: all 0.3s;
+}
+.btn-secondary:hover { background: var(--neon-green); color: #0a0a23; border-color: var(--neon-green); }
+
+/* Cardápio Section */
+.cardapio { padding: 6rem 2rem; background: rgba(10, 10, 35, 0.5); }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 4rem; }
+.section-title h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+.section-title h2 span { color: var(--neon-green); }
+.section-title p { color: var(--text-muted); font-size: 1.125rem; }
+
+.filtros { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
+.busca-container { position: relative; }
+.busca-input {
+width: 100%; padding: 1rem 1rem 1rem 3rem;
+background: var(--card-dark); border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 0.5rem; color: var(--text-base); font-size: 1rem;
+}
+.busca-input::placeholder { color: var(--text-muted); }
+.busca-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+.filtro-categorias { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.5rem; }
+.filtro-btn {
+padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600;
+white-space: nowrap; transition: all 0.3s; border: 1px solid transparent;
+background: var(--card-dark); color: var(--text-muted); cursor: pointer;
+}
+.filtro-btn:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-base); }
+.filtro-btn.active {
+background: var(--neon-green); color: #0a0a23;
+box-shadow: 0 0 15px var(--neon-green);
+}
+
+.cardapio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+.card-lanche {
+background: var(--card-dark); border-radius: 1rem; overflow: hidden;
+transition: all 0.3s; border: 1px solid rgba(255, 255, 255, 0.1);
+display: flex; flex-direction: column;
+}
+.card-lanche:hover {
+transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 255, 157, 0.1);
+border-color: var(--neon-green);
+}
+.card-img-placeholder {
+width: 100%; height: 200px; background: #1a1a35;
+display: flex; align-items: center; justify-content: center;
+color: var(--text-muted); font-size: 3rem;
+}
+.card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.card-badge {
+display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px;
+font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem; text-align: center; }
+.card-badge.destaque { background: rgba(255, 0, 204, 0.2); color: var(--neon-pink); border: 1px solid var(--neon-pink); }
+.card-badge.picante { background: rgba(255, 0, 0, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+.card-badge.vegano { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
+.card-lanche h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+.card-lanche.preco { font-size: 1.5rem; font-weight: 800; color: var(--neon-green); margin-bottom: 1rem; }
+.card-lanche p { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; flex: 1; }
+.card-add {
+width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.05);
+border: none; color: var(--neon-green); font-weight: 700; cursor: pointer;
+transition: all 0.3s; border-radius: 0.5rem;
+}
+.card-add:hover { background: var(--neon-green); color: #0a0a23; }
+
+/* Depoimentos */
+.depoimentos { padding: 6rem 2rem; background: rgba(10, 10, 35, 0.3); }
+.depoimento-carrossel { position: relative; overflow: hidden; border-radius: 1rem; max-width: 800px; margin: 0 auto; }
+.depoimento-slide { padding: 3rem; text-align: center; display: none; }
+.depoimento-slide.active { display: block; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.depoimento-avatar {
+width: 6rem; height: 6rem; border-radius: 50%; background: var(--neon-green);
+display: flex; align-items: center; justify-content: center;
+font-size: 2rem; font-weight: 800; margin: 0 auto 1.5rem; color: #0a0a23;
+}
+.depoimento-text { font-size: 1.25rem; font-style: italic; margin-bottom: 1.5rem; line-height: 1.6; }
+.depoimento-author { font-weight: 700; color: var(--neon-green); }
+.depoimento-stars { display: flex; justify-content: center; gap: 0.25rem; margin-bottom: 2rem; }
+.depoimento-stars svg { width: 1.25rem; height: 1.25rem; color: var(--neon-green); fill: currentColor; }
+.depoimento-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+.dot {
+width: 0.75rem; height: 0.75rem; border-radius: 50%;
+background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.3s;
+}
+.dot.active { background: var(--neon-green); transform: scale(1.2); }
+
+/* Contato & Footer */
+.contato { padding: 6rem 2rem; text-align: center; }
+.contato h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+.contato h2 span { color: var(--neon-green); }
+.contato p { color: var(--text-muted); font-size: 1.125rem; margin-bottom: 3rem; }
+.contato-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.contato-horario { margin-top: 2rem; color: var(--text-muted); font-size: 0.875rem; }
+
+footer { padding: 3rem 2rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--neon-green); }
+.footer-copy { color: var(--text-muted); font-size: 0.875rem; }
+
+/* WhatsApp Float /
+.whatsapp-float {
+position: fixed; bottom: 2rem; right: 2rem; width: 4rem; height: 4rem;
+background: var(--neon-green); border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-size: 2rem; color: #0a0a23; box-shadow: 0 4px 15px rgba(0, 255, 157, 0.4);
+z-index: 1000; transition: all 0.3s; cursor: pointer; text-decoration: none;
+}
+.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0, 255, 157, 0.6); }
+
+@media (max-width: 768px) {
+.header-container { padding: 0 1rem; }
+nav { display: none; }
+.hero-buttons { flex-direction: column; align-items: center; }
+.cardapio-grid { grid-template-columns: 1fr; }
+.filtro-categorias { justify-content: flex-start; }
+}
+</style>
+</head>
+<body>
+<header>
+<div class="header-container">
+<div class="logo">
+<div class="logo-icon">X</div>
+<span class="logo-text">PointX</span>
+</div>
+<nav>
+<a href="#cardapio">Cardápio</a>
+<a href="#depoimentos">Depoimentos</a>
+<a href="#contato">Contato</a>
+</nav>
+<a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-btn">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+Pedir no Zap
+</a>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<div class="hero-badge">🔥 ABERTO AGORA • ENTREGA RÁPIDA
+</div>
+<h1>SEU LANCHE,<br><span class="highlight">MODO NEON</span></h1>
+<p>Sabores que acendem seus sentidos. Burgers artesanais, hot dogs explosivos e acompanhamentos que são puro glow.</p>
+<div class="hero-buttons">
+<a href="#cardapio" class="btn-primary">Ver Cardápio</a>
+<a href="https://wa.me/5511999999999" target="_blank" class="btn-secondary">Pedir no Zap</a>
+</div>
+</div>
+</section>
+
+<section id="cardapio" class="cardapio">
+<div class="container">
+<div class="section-title">
+<h2>CARDÁPIO<span>.</span></h2>
+<p>Escolha seu glow e pede já</p>
+</div>
+
+<div class="filtros">
+<div class="busca-container">
+<svg class="busca-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+<input type="text" class="busca-input" placeholder="Buscar lanche..." id="searchInput">
+</div>
+<div class="filtro-categorias">
+<button class="filtro-btn active" data-category="todos">Tudo</button>
+<button class="filtro-btn" data-category="burgers">Burgers</button>
+<button class="filtro-btn" data-category="hotdogs">Hot Dogs</button>
+<button class="filtro-btn" data-category="sides">Sides</button>
+<button class="filtro-btn" data-category="drinks">Drinks</button>
+</div>
+</div>
+
+<div class="cardapio-grid" id="menuGrid">
+<!-- Item 1 -->
+<div class="card-lanche" data-category="burgers">
+<div class="card-img-placeholder">🍔</div>
+<div class="card-body">
+<span class="card-badge destaque">🔥 Mais pedido</span>
+<h3>X-Burguer Neon</h3>
+<p class="preco">R$ 24,90</p>
+<p>Pão brioche, blend 180g, queijo cheddar, bacon crocante, picles e neon sauce.</p>
+<button class="card-add" onclick="addToCart('X-Burguer Neon', 24.90)">+ Adicionar</button>
+</div>
+</div>
+
+<!-- Item 2 -->
+<div class="card-lanche" data-category="hotdogs">
+<div class="card-img-placeholder">🌭</div>
+<div class="card-body">
+<span class="card-badge picante">🌶️ Picante</span>
+<h3>X-Dog Duplo</h3>
+<p class="preco">R$ 18,50</p>
+<p>Salsichão especial, purê de batata, cheddar, cebola crispy e molho da casa.</p>
+<button class="card-add" onclick="addToCart('X-Dog Duplo', 18.50)">+ Adicionar</button>
+</div>
+</div>
+
+<!-- Item 3 -->
+<div class="card-lanche" data-category="sides">
+<div class="card-img-placeholder">🍟</div>
+<div class="card-body">
+<h3>Batata Furia</h3>
+<p class="preco">R$ 12,00</p>
+<p>Batata rústica com sal de ervas e acompanhamento de 3 molhos.</p>
+<button class="card-add" onclick="addToCart('Batata Furia', 12.00)">+ Adicionar</button>
+</div>
+</div>
+
+<!-- Item 4 -->
+<div class="card-lanche" data-category="drinks">
+<div class="card-img-placeholder">🥤</div>
+<div class="card-body">
+<span class="card-badge destaque">✨ Geladinho</span>
+<h3>Refrigerante Neon</h3>
+<p class="preco">R$ 7,50</p>
+<p>Lata 350ml. Escolha: laranja ácida, uva neon ou cola twist.</p>
+<button class="card-add" onclick="addToCart('Refrigerante Neon', 7.50)">+ Adicionar</button>
+</div>
+</div>
+
+<!-- Item 5 -->
+<div class="card-lanche" data-category="burgers">
+<div class="card-img-placeholder">🥬</div>
+<div class="card-body">
+<span class="card-badge vegano">🌱 Vegano</span>
+<h3>X-Vegan Glow</h3>
+<p class="preco">R$ 22,00</p>
+<p>Blend de feijão-louro e beterraba, queijo vegetal, rúcula e tomate.</p>
+<button class="card-add" onclick="addToCart('X-Vegan Glow', 22.00)">+ Adicionar</button>
+</div>
+</div>
+
+<!-- Item 6 -->
+<div class="card-lanche" data-category="drinks">
+<div class="card-img-placeholder">🥛</div>
+<div class="card-body">
+<h3>Milk-Shake Neon</h3>
+<p class="preco">R$ 14,00</p>
+<p>500ml. Sabores: morango-banana, violeta ou pistache.</p>
+<button class="card-add" onclick="addToCart('Milk-Shake Neon', 14.00)">+ Adicionar</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="depoimentos" class="depoimentos">
+<div class="container">
+<div class="section-title">
+<h2>DEPOIMENTOS<span>.</span></h2>
+</div>
+<div class="depoimento-carrossel">
+<div class="depoimento-slide active">
+<div class="depoimento-avatar">LR</div>
+<div class="depoimento-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="depoimento-text">"O X-Burguer Neon é absurdo de bom. O molho deles vicia!"</p>
+<p class="depoimento-author">Leo R.</p>
+</div>
+<div class="depoimento-slide">
+<div class="depoimento-avatar">MS</div>
+<div class="depoimento-stars">
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
