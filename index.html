@@ -747,9 +747,14 @@ try {
   console.log(data);
   alert("Cobrança PIX criada com sucesso!");
 
-} catch (e) {
-  alert("Erro ao gerar o PIX.");
+catch (e) {
   console.error(e);
+
+  if (e.response) {
+    alert("Erro: " + e.response.status);
+  } else {
+    alert("Erro: " + e.message);
+  }
 }
         }
 
