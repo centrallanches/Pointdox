@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+<head><script>(function(){function mkStore(){var m={};return{getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null;},setItem:function(k,v){m[k]=String(v);},removeItem:function(k){delete m[k];},clear:function(){m={};},key:function(i){return Object.keys(m)[i]||null;},get length(){return Object.keys(m).length;}};}try{window.localStorage.getItem('__t');}catch(e){try{Object.defineProperty(window,'localStorage',{value:mkStore(),configurable:true});}catch(e2){}}try{window.sessionStorage.getItem('__t');}catch(e){try{Object.defineProperty(window,'sessionStorage',{value:mkStore(),configurable:true});}catch(e2){}}})();</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Point do X - Cardápio</title>
@@ -212,9 +212,40 @@
             font-weight:bold;
             cursor:pointer;
         }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .remove-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 12px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
     </style>
-</head>
-<body><header>
+<style>html,body{overscroll-behavior:contain}canvas{max-width:100%;height:auto}img{max-width:100%}</style></head>
+<body>
+<header>
     <h1>Point do X</h1>
 </header>
 
@@ -241,18 +272,11 @@
 
                 <div class="card-body">
                     <h3>X-Alcatra</h3>
-
                     <p>Pão, hambúrguer 130g, alcatra em cubos, maionese, alface, tomate, milho, batata palha, queijo e presunto.</p>
-
                     <span class="discount-tag">-2% OFF</span>
-
                     <span class="old-price">R$ 27,00</span>
-
                     <span class="new-price">R$ 26,46</span>
-
-                    <button class="btn-add" onclick="addToCart('X-Alcatra',26.46)">
-                        Adicionar
-                    </button>
+                    <button class="btn-add" onclick="addToCart('X-Alcatra',26.46)">Adicionar</button>
                 </div>
             </div>
 
@@ -261,42 +285,28 @@
                 <div class="card-img">
                     <img src="file_00000000e2a0820ea3350b472b222487.png" alt="X-Bacon">
                 </div>
-
                 <div class="card-body">
                     <h3>X-Bacon</h3>
-
                     <p>Pão, hambúrguer 130g, bacon, maionese, alface, tomate, milho, batata palha, queijo e presunto.</p>
-
                     <span class="discount-tag">-2% OFF</span>
-
                     <span class="old-price">R$ 24,00</span>
-
                     <span class="new-price">R$ 23,52</span>
-
-                    <button class="btn-add" onclick="addToCart('X-Bacon',23.52)">
-                        Adicionar
-                    </button>
+                    <button class="btn-add" onclick="addToCart('X-Bacon',23.52)">Adicionar</button>
                 </div>
-            </div>            <!-- X Burguer -->
+            </div>
+
+            <!-- X Burguer -->
             <div class="card">
                 <div class="card-img">
                     <img src="file_0000000082cc820ea69d30c58af5c4f2.png" alt="X-Burguer">
                 </div>
-
                 <div class="card-body">
                     <h3>X-Burguer</h3>
-
                     <p>Pão, hambúrguer 130g, maionese, batata palha, queijo e presunto.</p>
-
                     <span class="discount-tag">-2% OFF</span>
-
                     <span class="old-price">R$ 15,00</span>
-
                     <span class="new-price">R$ 14,70</span>
-
-                    <button class="btn-add" onclick="addToCart('X-Burguer',14.70)">
-                        Adicionar
-                    </button>
+                    <button class="btn-add" onclick="addToCart('X-Burguer',14.70)">Adicionar</button>
                 </div>
             </div>
 
@@ -305,21 +315,13 @@
                 <div class="card-img">
                     <img src="file_00000000bc3c820e9f8aecad92b14a68.png" alt="X-Calabresa">
                 </div>
-
                 <div class="card-body">
                     <h3>X-Calabresa</h3>
-
                     <p>Pão, hambúrguer 130g, calabresa, maionese, alface, tomate, milho, batata palha, queijo e presunto.</p>
-
                     <span class="discount-tag">-2% OFF</span>
-
                     <span class="old-price">R$ 22,00</span>
-
                     <span class="new-price">R$ 21,56</span>
-
-                    <button class="btn-add" onclick="addToCart('X-Calabresa',21.56)">
-                        Adicionar
-                    </button>
+                    <button class="btn-add" onclick="addToCart('X-Calabresa',21.56)">Adicionar</button>
                 </div>
             </div>
 
@@ -328,21 +330,13 @@
                 <div class="card-img">
                     <img src="file_0000000071bc820ea48fbdd307af239f.png" alt="X-Egg">
                 </div>
-
                 <div class="card-body">
                     <h3>X-Egg</h3>
-
                     <p>Pão, hambúrguer 130g, ovo, maionese, alface, tomate, milho, batata palha, queijo e presunto.</p>
-
                     <span class="discount-tag">-2% OFF</span>
-
                     <span class="old-price">R$ 23,40</span>
-
                     <span class="new-price">R$ 22,93</span>
-
-                    <button class="btn-add" onclick="addToCart('X-Egg',22.93)">
-                        Adicionar
-                    </button>
+                    <button class="btn-add" onclick="addToCart('X-Egg',22.93)">Adicionar</button>
                 </div>
             </div>
 
@@ -351,195 +345,122 @@
                 <div class="card-img">
                     <img src="file_00000000a2dc820eaba291902247ce9d.png" alt="X-Frango">
                 </div>
-
                 <div class="card-body">
                     <h3>X-Frango</h3>
-
                     <p>Pão, hambúrguer 130g, frango, maionese, alface, tomate, milho, batata palha, queijo e presunto.</p>
-
                     <span class="discount-tag">-2% OFF</span>
-
                     <span class="old-price">R$ 25,00</span>
-
                     <span class="new-price">R$ 24,50</span>
-
-                    <button class="btn-add" onclick="addToCart('X-Frango',24.50)">
-                        Adicionar
-                    </button>
+                    <button class="btn-add" onclick="addToCart('X-Frango',24.50)">Adicionar</button>
                 </div>
             </div>
 
-        </div><!-- Combos -->
-<h2 class="section-title">Combos Point do X</h2>
-
-<div class="menu-grid">
-
-    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Alcatra">
         </div>
 
-        <div class="card-body">
-            <h3>Combo X-Alcatra</h3>
-            <p>X-Alcatra + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 32,00</span>
-            <span class="new-price">R$ 31,36</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Alcatra',31.36)">
-                Adicionar
-            </button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Bacon">
-        </div>
-
-        <div class="card-body">
-            <h3>Combo X-Bacon</h3>
-            <p>X-Bacon + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 28,00</span>
-            <span class="new-price">R$ 27,44</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Bacon',27.44)">
-                Adicionar
-            </button>
+        <h2 class="section-title">Combos Point do X</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <div class="card-img">
+                    <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Alcatra">
+                </div>
+                <div class="card-body">
+                    <h3>Combo X-Alcatra</h3>
+                    <p>X-Alcatra + 150g de batata + Coca-Cola Original 350ml</p>
+                    <span class="discount-tag">-2% OFF</span>
+                    <span class="old-price">R$ 32,00</span>
+                    <span class="new-price">R$ 31,36</span>
+                    <button class="btn-add" onclick="addToCart('Combo X-Alcatra',31.36)">Adicionar</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img">
+                    <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Bacon">
+                </div>
+                <div class="card-body">
+                    <h3>Combo X-Bacon</h3>
+                    <p>X-Bacon + 150g de batata + Coca-Cola Original 350ml</p>
+                    <span class="discount-tag">-2% OFF</span>
+                    <span class="old-price">R$ 28,00</span>
+                    <span class="new-price">R$ 27,44</span>
+                    <button class="btn-add" onclick="addToCart('Combo X-Bacon',27.44)">Adicionar</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Burguer">
-        </div>
-
-        <div class="card-body">
-            <h3>Combo X-Burguer</h3>
-            <p>X-Burguer + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 25,00</span>
-            <span class="new-price">R$ 24,50</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Burguer',24.50)">
-                Adicionar
-            </button>
-        </div>
+    <!-- PORÇÕES -->
+    <div id="porcoes" class="menu-category" style="display:none;">
+        <h2 class="section-title">Porções</h2>
+        <p>Em breve...</p>
     </div>
 
-    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Calabresa">
-        </div>
-
-        <div class="card-body">
-            <h3>Combo X-Calabresa</h3>
-            <p>X-Calabresa + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 26,00</span>
-            <span class="new-price">R$ 25,48</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Calabresa',25.48)">
-                Adicionar
-            </button>
-        </div>
-    </div>
-
-</div>    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Egg">
-        </div>
-        <div class="card-body">
-            <h3>Combo X-Egg</h3>
-            <p>X-Egg + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 27,00</span>
-            <span class="new-price">R$ 26,46</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Egg',26.46)">
-                Adicionar
-            </button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Frango">
-        </div>
-        <div class="card-body">
-            <h3>Combo X-Frango</h3>
-            <p>X-Frango + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 26,00</span>
-            <span class="new-price">R$ 25,48</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Frango',25.48)">
-                Adicionar
-            </button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Salada">
-        </div>
-        <div class="card-body">
-            <h3>Combo X-Salada</h3>
-            <p>X-Salada + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 25,00</span>
-            <span class="new-price">R$ 24,50</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Salada',24.50)">
-                Adicionar
-            </button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-img">
-            <img src="file_00000000b2a4820eb7fdd0ba30ae4063.png" alt="Combo X-Tudo">
-        </div>
-        <div class="card-body">
-            <h3>Combo X-Tudo</h3>
-            <p>X-Tudo + 150g de batata + Coca-Cola Original 350ml</p>
-
-            <span class="discount-tag">-2% OFF</span>
-            <span class="old-price">R$ 35,00</span>
-            <span class="new-price">R$ 34,30</span>
-
-            <button class="btn-add" onclick="addToCart('Combo X-Tudo',34.30)">
-                Adicionar
-            </button>
-        </div>
+    <!-- BEBIDAS -->
+    <div id="bebidas" class="menu-category" style="display:none;">
+        <h2 class="section-title">Bebidas</h2>
+        <p>Em breve...</p>
     </div>
 
 </div>
 
+<!-- Carrinho Flutuante -->
+<div id="cartFloat" class="cart-float" onclick="openModal()">
+    🛒 Ver Carrinho <span id="countBadge" class="cart-count">0</span>
 </div>
 
-<!-- PORÇÕES -->
-<div id="porcoes" class="menu-category" style="display:none;"><div class="form-group">
-    <label>Forma de Pagamento</label>
-    <select id="paymentMethod" class="form-input">
-        <option value="pix">PIX</option>
-        <option value="dinheiro">Dinheiro</option>
-    </select>
-</div>
+<!-- Modal de Checkout -->
+<div id="checkoutModal" class="modal">
+    <div class="modal-content">
+        <h2>Finalizar Pedido</h2>
 
-<button class="checkout-btn" onclick="finalizeOrder()">
-    Enviar Pedido
-</button>
+        <div class="form-group">
+            <label>Nome Completo*</label>
+            <input type="text" id="clientName" class="form-input" required>
+        </div>
 
-</div>
+        <div class="form-group">
+            <label>WhatsApp*</label>
+            <input type="tel" id="whatsapp" class="form-input" placeholder="DDD + número" required>
+        </div>
+
+        <div class="form-group">
+            <label>Endereço*</label>
+            <input type="text" id="street" class="form-input" placeholder="Rua/Avenida" required>
+        </div>
+
+        <div class="form-group">
+            <label>Número*</label>
+            <input type="text" id="houseNum" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label>Observações</label>
+            <input type="text" id="obs" class="form-input" placeholder="Ex: Sem cebola">
+        </div>
+
+        <div class="form-group">
+            <label>Forma de Pagamento</label>
+            <select id="paymentMethod" class="form-input">
+                <option value="pix">PIX</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="cartao">Cartão na Entrega</option>
+            </select>
+        </div>
+
+        <h3>Seu Pedido</h3>
+        <div id="cartList" style="margin: 15px 0;"></div>
+        <div style="text-align: right; font-weight: bold; margin-bottom: 15px;">
+            Total: <span id="cartTotalValue">R$ 0,00</span>
+        </div>
+
+        <button class="checkout-btn" onclick="finalizeOrder()">
+            Finalizar Pedido
+        </button>
+        
+        <button class="checkout-btn" style="background:#888; margin-top:10px;" onclick="closeModal()">
+            Cancelar
+        </button>
+    </div>
 </div>
 
 <script>
@@ -550,10 +471,12 @@ function filterMenu(category){
     event.target.classList.add("active");
 
     ["lanches","porcoes","bebidas"].forEach(id=>{
-        document.getElementById(id).style.display="none";
+        const el = document.getElementById(id);
+        if(el) el.style.display="none";
     });
 
-    document.getElementById(category).style.display="block";
+    const selected = document.getElementById(category);
+    if(selected) selected.style.display="block";
 }
 
 function addToCart(name,price){
@@ -569,48 +492,48 @@ function addToCart(name,price){
 function removeFromCart(index){
     cart.splice(index,1);
     updateCartUI();
-    openModal();
+    openModal(); // Re-renderiza a lista
 }
 
 function updateCartUI(){
-    document.getElementById("countBadge").innerText=cart.length;
-    document.getElementById("cartFloat").style.display=
-        cart.length>0?"flex":"none";
+    const badge = document.getElementById("countBadge");
+    const float = document.getElementById("cartFloat");
+    
+    if(badge) badge.innerText=cart.length;
+    if(float) float.style.display = cart.length>0?"flex":"none";
 }
 
 function openModal(){
-
     const list=document.getElementById("cartList");
     const totalElement=document.getElementById("cartTotalValue");
+    const modal = document.getElementById("checkoutModal");
+
+    if (!list || !totalElement || !modal) return;
 
     list.innerHTML="";
-
     let total=0;
 
     cart.forEach((item,index)=>{
-
         total+=item.price;
-
         list.innerHTML+=`
         <div class="cart-item">
             <div>
                 <strong>${item.name}</strong><br>
                 <small>R$ ${item.price.toFixed(2).replace(".",",")}</small>
             </div>
-
-            <button class="remove-btn"
-            onclick="removeFromCart(${index})">
-            ×
-            </button>
-
+            <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
         </div>`;
     });
 
-    totalElement.innerHTML=
-    "R$ "+total.toFixed(2).replace(".",",");
+    totalElement.innerHTML = "R$ "+total.toFixed(2).replace(".",",");
+    modal.style.display="flex";
+}
 
-    document.getElementById("checkoutModal").style.display="flex";
-}async function finalizeOrder() {
+function closeModal() {
+    document.getElementById("checkoutModal").style.display="none";
+}
+
+async function finalizeOrder() {
     if (cart.length === 0) {
         alert("Seu carrinho está vazio.");
         return;
@@ -631,7 +554,7 @@ function openModal(){
     const total = cart.reduce((sum, item) => sum + item.price, 0);
 
     try {
-
+        // Chamada para a API do NovaPay
         const response = await fetch("/api/charge", {
             method: "POST",
             headers: {
@@ -660,22 +583,16 @@ function openModal(){
         }
 
         if (payment === "pix") {
-
             alert("PIX gerado com sucesso!");
-
             if (data.pixCode) {
                 navigator.clipboard.writeText(data.pixCode);
                 alert("Código PIX copiado.");
             }
-
             if (data.qrCode) {
                 window.open(data.qrCode, "_blank");
             }
-
         } else {
-
             alert("Pedido enviado com sucesso!");
-
         }
 
         cart = [];
@@ -684,12 +601,16 @@ function openModal(){
 
     } catch (err) {
         console.error(err);
-        alert(err.message);
+        alert("Erro ao processar pagamento: " + err.message);
     }
 }
 
 window.onclick = function(event) {
-    if (event.target == document.getElementById("checkoutModal")) {
+    const modal = document.getElementById("checkoutModal");
+    if (event.target == modal) {
         closeModal();
     }
 };
+</script>
+<script>(function(){function pick(){var c=[];var r=document.getElementById('root');if(r&&r.firstElementChild)c.push(r.firstElementChild);if(r)c.push(r);var b=document.body;if(b&&b.firstElementChild)c.push(b.firstElementChild);if(b)c.push(b);for(var i=0;i<c.length;i++){try{var g=getComputedStyle(c[i]).backgroundColor;if(g&&g!=='rgba(0, 0, 0, 0)'&&g!=='transparent')return g;}catch(e){}}return null;}function sync(){var g=pick();if(g){document.documentElement.style.background=g;document.body.style.background=g;try{parent.postMessage({__bg:{picked:g}},'*');}catch(e){}}}window.addEventListener('load',sync);document.addEventListener('DOMContentLoaded',sync);var n=0,t=setInterval(function(){sync();if(++n>12)clearInterval(t);},200);})();</script></body>
+</html>
